@@ -630,11 +630,11 @@ function parseNaturalLanguageMeeting(text) {
         /(?:in|at|channel)\s*(?:room\s*)?(\d)/i,
         /room\s*(\d)/i,
         /general/i,
-        /shadastria/i,
+        /devspace|dev space/i,
     ];
     
     if (lowerText.includes('general')) channelNum = 1;
-    else if (lowerText.includes('shadastria')) channelNum = 2;
+    else if (lowerText.includes('devspace') || lowerText.includes('dev space')) channelNum = 2;
     else if (lowerText.includes('room 1') || lowerText.includes('room1')) channelNum = 3;
     else if (lowerText.includes('room 2') || lowerText.includes('room2')) channelNum = 4;
     else {
@@ -1876,7 +1876,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
                     .setCustomId('meeting_channel')
                     .setLabel(`Channel (Type: 1-${VOICE_CHANNELS.length})`)
                     .setStyle(TextInputStyle.Short)
-                    .setPlaceholder(`1=Lounge 2=Shadastria 3=Room1 4=Room2`)
+                    .setPlaceholder(`1=General 2=DevSpace 3=Gaming`)
                     .setRequired(true);
 
                 const dateInput = new TextInputBuilder()
@@ -3022,7 +3022,7 @@ client.on(Events.MessageCreate, async (message) => {
                         `Time: **${formatTime(session.startTime.hours, session.startTime.minutes)} - ${formatTime(endHours, endMinutes)} IST**\n\n` +
                         `📍 **Which voice channel?**\n` +
                         `• \`1\` - 🌴 Lounge\n` +
-                        `• \`2\` - 💬 Shadastria\n` +
+                        `• \`2\` - 💬 Dev Space\n` +
                         `• \`3\` - 📹 Meeting Room 1\n` +
                         `• \`4\` - 📹 Meeting Room 2\n` +
                         `• \`5\` - 👋 Guest\n\n` +
@@ -3035,7 +3035,7 @@ client.on(Events.MessageCreate, async (message) => {
                     let channelNum = null;
                     
                     if (channelInput === '1' || channelInput.includes('lounge')) channelNum = 1;
-                    else if (channelInput === '2' || channelInput.includes('shadastria')) channelNum = 2;
+                    else if (channelInput === '2' || channelInput.includes('devspace') || channelInput.includes('dev space')) channelNum = 2;
                     else if (channelInput === '3' || channelInput.includes('room 1')) channelNum = 3;
                     else if (channelInput === '4' || channelInput.includes('room 2')) channelNum = 4;
                     else if (channelInput === '5' || channelInput.includes('guest')) channelNum = 5;
