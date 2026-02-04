@@ -3021,11 +3021,9 @@ client.on(Events.MessageCreate, async (message) => {
                         `Date: **${session.date.day}/${session.date.month}/${session.date.year}**\n` +
                         `Time: **${formatTime(session.startTime.hours, session.startTime.minutes)} - ${formatTime(endHours, endMinutes)} IST**\n\n` +
                         `📍 **Which voice channel?**\n` +
-                        `• \`1\` - 🌴 Lounge\n` +
+                        `• \`1\` - � General\n` +
                         `• \`2\` - 💬 Dev Space\n` +
-                        `• \`3\` - 📹 Meeting Room 1\n` +
-                        `• \`4\` - 📹 Meeting Room 2\n` +
-                        `• \`5\` - 👋 Guest\n\n` +
+                        `• \`3\` - 🎮 Gaming\n\n` +
                         `_Type \`cancel\` to exit_`
                     );
                     session.messages.push(promptMsg);
@@ -3034,18 +3032,16 @@ client.on(Events.MessageCreate, async (message) => {
                     const channelInput = content.trim();
                     let channelNum = null;
                     
-                    if (channelInput === '1' || channelInput.includes('lounge')) channelNum = 1;
+                    if (channelInput === '1' || channelInput.includes('general')) channelNum = 1;
                     else if (channelInput === '2' || channelInput.includes('devspace') || channelInput.includes('dev space')) channelNum = 2;
-                    else if (channelInput === '3' || channelInput.includes('room 1')) channelNum = 3;
-                    else if (channelInput === '4' || channelInput.includes('room 2')) channelNum = 4;
-                    else if (channelInput === '5' || channelInput.includes('guest')) channelNum = 5;
+                    else if (channelInput === '3' || channelInput.includes('gaming')) channelNum = 3;
                     else {
-                        const numMatch = channelInput.match(/[1-5]/);
+                        const numMatch = channelInput.match(/[1-3]/);
                         if (numMatch) channelNum = parseInt(numMatch[0]);
                     }
                     
                     if (!channelNum) {
-                        const errorMsg = await message.channel.send(`❌ Invalid channel. Enter a number from 1 to 5.`);
+                        const errorMsg = await message.channel.send(`❌ Invalid channel. Enter a number from 1 to 3.`);
                         session.messages.push(errorMsg);
                         return;
                     }
