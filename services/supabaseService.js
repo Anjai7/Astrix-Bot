@@ -220,7 +220,7 @@ async function logFestivalUpdate(year, count) {
             .upsert([{
                 year: year,
                 updated_at: new Date().toISOString(),
-                festival_count: count
+                festivals_count: count
             }], { onConflict: 'year' });
         
         if (error) throw error;
