@@ -152,7 +152,7 @@ Next Update: Tomorrow at 9:00 PM IST
 
 ### Step 1: Prepare Repository
 1. Make sure all changes are committed to GitHub
-2. Push to your repository: https://github.com/Lethinkj/Axtrix
+2. Push to your repository: https://github.com/Anjai7/Astrix-Bot
 
 ### Step 2: Create Render Web Service
 1. Go to https://render.com/

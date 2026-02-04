@@ -1441,7 +1441,7 @@ client.once(Events.ClientReady, async (c) => {
                     const wishMessage = 
                         `🎉🎂 **HAPPY BIRTHDAY** <@${person.userId}>! 🎂🎉\n\n` +
                         `${birthdayWish}\n\n` +
-                        `— With love from the BeeLert fam 💙`;
+                        `— With love from the Axtrix fam 💙`;
                     
                     await channel.send(wishMessage);
                     console.log(`✅ Posted startup birthday wish for ${person.name}`);
@@ -1528,7 +1528,7 @@ client.once(Events.ClientReady, async (c) => {
                         `${festival.emoji} **HAPPY ${festival.name.toUpperCase()}!** ${festival.emoji}\n\n` +
                         `<@&${CLAN_ROLE_ID}>\n\n` +
                         `${festivalWish}\n\n` +
-                        `— Wishing you joy and prosperity from the BeeLert fam 💙`;
+                        `— Wishing you joy and prosperity from the Axtrix fam 💙`;
                     
                     await channel.send(festivalMessage);
                     console.log(`✅ Posted startup festival wish for ${festival.name}`);
@@ -2576,7 +2576,7 @@ client.on(Events.MessageCreate, async (message) => {
                 } catch (aiError) {
                     console.error('AI response error in DM:', aiError);
                     await message.reply(
-                        "👋 Hi! I'm BeeLert, your productivity assistant!\n\n" +
+                        "👋 Hi! I'm Axtrix, your productivity assistant!\n\n" +
                         "Type `!help` to see all commands or `!reminder` to set up daily reminders!"
                     );
                     return;
@@ -3347,7 +3347,7 @@ client.on(Events.MessageCreate, async (message) => {
                     const wishMessage = 
                         `🎉🎂 **HAPPY BIRTHDAY** <@${person.userId}>! 🎂🎉\n\n` +
                         `${birthdayWish}\n\n` +
-                        `— With love from the BeeLert fam 💙`;
+                        `— With love from the Axtrix fam 💙`;
                     
                     await channel.send(wishMessage);
                     console.log(`✅ Posted manual birthday wish for ${person.name}`);

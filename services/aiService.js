@@ -26,7 +26,7 @@ async function makeOpenRouterRequest(messages, maxTokens = 500) {
         headers: {
             'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
             'Content-Type': 'application/json',
-            'HTTP-Referer': 'https://github.com/Lethinkj/Axtrix',
+            'HTTP-Referer': 'https://github.com/Anjai7/Astrix-Bot',
             'X-Title': 'Axtrix Discord Bot'
         },
         body: JSON.stringify({
