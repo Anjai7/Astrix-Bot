@@ -40,7 +40,6 @@ const ROOKIE_ROLE_ID = process.env.ROOKIE_ROLE_ID || '1358772531745521684';
 const GENERAL_VOICE_CHANNEL_ID = GENERAL_CHANNEL_ID || '1467882915344941288';
 const DEV_SPACE_VOICE_CHANNEL_ID = DEV_SPACE_CHANNEL_ID || '1426056854798209055';
 const GAMING_VOICE_CHANNEL_ID = GAMING_CHANNEL_ID || '1358813672608366762';
-const GUEST_VOICE_CHANNEL_ID = process.env.GUEST_VOICE_CHANNEL_ID || '1459945478488854641';
 const MEETING_SUMMARY_CHANNEL_ID = process.env.MEETING_SUMMARY_CHANNEL_ID || '1442861248285773924';
 const SCHEDULE_MEET_CHANNEL_ID = process.env.SCHEDULE_MEET_CHANNEL_ID || '1443135153185493033';
 const ROLE_NAME = process.env.ROLE_NAME || 'Adepti';
@@ -53,8 +52,7 @@ const UPDATES_CHANNEL_ID = process.env.UPDATES_CHANNEL_ID || MEETING_SUMMARY_CHA
 const VOICE_CHANNELS = [
     { id: GENERAL_VOICE_CHANNEL_ID, name: 'General' },
     { id: DEV_SPACE_VOICE_CHANNEL_ID, name: 'Dev Space' },
-    { id: GAMING_VOICE_CHANNEL_ID, name: 'Gaming' },
-    { id: GUEST_VOICE_CHANNEL_ID, name: 'Guest' }
+    { id: GAMING_VOICE_CHANNEL_ID, name: 'Gaming' }
 ];
 
 // ============================================
@@ -3531,9 +3529,9 @@ async function handleVoiceJoin(userId, channel) {
         console.log(`🎯 Started tracking points for ${username} in ${channel.name}`);
     }
     
-    // ===== LOUNGE MEETING TRACKING (ORIGINAL) =====
-    // Only track the lounge voice channel for meeting summaries
-    if (channelId !== LOUNGE_VOICE_CHANNEL_ID) return;
+    // ===== GENERAL MEETING TRACKING (ORIGINAL) =====
+    // Only track the general voice channel for meeting summaries
+    if (channelId !== GENERAL_VOICE_CHANNEL_ID) return;
     
     if (!voiceMeetings.has(channelId)) {
         // Start new meeting session
@@ -3543,7 +3541,7 @@ async function handleVoiceJoin(userId, channel) {
             participants: new Map(),
             lastActivity: now
         });
-        console.log(`📊 Lounge meeting started: ${channel.name}`);
+        console.log(`📊 General meeting started: ${channel.name}`);
     }
     
     const meeting = voiceMeetings.get(channelId);
@@ -3599,9 +3597,9 @@ async function handleVoiceLeave(userId, channel) {
         voicePointsTracking.delete(userId);
     }
     
-    // ===== LOUNGE MEETING TRACKING (ORIGINAL) =====
-    // Only track the lounge voice channel for meeting summaries
-    if (channelId !== LOUNGE_VOICE_CHANNEL_ID) return;
+    // ===== GENERAL MEETING TRACKING (ORIGINAL) =====
+    // Only track the general voice channel for meeting summaries
+    if (channelId !== GENERAL_VOICE_CHANNEL_ID) return;
     
     if (!voiceMeetings.has(channelId)) return;
     
