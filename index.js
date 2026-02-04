@@ -635,8 +635,7 @@ function parseNaturalLanguageMeeting(text) {
     
     if (lowerText.includes('general')) channelNum = 1;
     else if (lowerText.includes('devspace') || lowerText.includes('dev space')) channelNum = 2;
-    else if (lowerText.includes('room 1') || lowerText.includes('room1')) channelNum = 3;
-    else if (lowerText.includes('room 2') || lowerText.includes('room2')) channelNum = 4;
+    else if (lowerText.includes('gaming')) channelNum = 3;
     else {
         const channelMatch = text.match(/(?:channel|room)\s*(\d)/i);
         if (channelMatch) channelNum = parseInt(channelMatch[1]);
@@ -3409,7 +3408,7 @@ client.on(Events.MessageCreate, async (message) => {
             `Go to <#${GEMINI_CHANNEL_ID}> and just type your question!\n` +
             `Messages auto-delete after 24 hours.\n\n` +
             `💡 **Daily Updates:** Automatic at 9:00 PM IST with fresh AI-generated motivation!\n` +
-            `🎙️ **Meeting Tracking:** Automatic tracking in Lounge voice channel (10 min minimum)\n` +
+            `🎙️ **Meeting Tracking:** Automatic tracking in General voice channel (10 min minimum)\n` +
             `📊 **Meeting Summaries:** Posted in <#${MEETING_SUMMARY_CHANNEL_ID}> after meetings end\n\n` +
             `🛠️ **Admin Commands:**\n` +
             `\`!deleteevents\` - Delete all bot-created Discord events`;
@@ -3683,7 +3682,7 @@ async function generateMeetingSummary(meeting, totalDuration, channel, participa
         const qualifiedAttendance = finalAttendance.filter(p => p.seconds >= 10 * 60);
         
         if (qualifiedAttendance.length === 0) {
-            console.log('No qualified participants for Lounge meeting summary');
+            console.log('No qualified participants for General meeting summary');
             return;
         }
         
@@ -3691,7 +3690,7 @@ async function generateMeetingSummary(meeting, totalDuration, channel, participa
         
         const totalMeetingSeconds = meetingDuration / 1000;
         
-        let summary = `📊 **Meeting Summary - Lounge**\n\n`;
+        let summary = `📊 **Meeting Summary - General**\n\n`;
         summary += `📅 ${new Date(meeting.startTime).toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}\n`;
         summary += `🕐 ${new Date(meeting.startTime).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true })} - ${new Date(actualEndTime).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true })} IST (${totalHours}h ${remainingMinutes}m)\n\n`;
         summary += `👥 **Attendance:**\n\n`;
@@ -3714,9 +3713,9 @@ async function generateMeetingSummary(meeting, totalDuration, channel, participa
         summary += `• Full attendance (95%+): ${fullAttendance} members\n`;
         
         await summaryChannel.send(summary);
-        console.log(`📊 Lounge meeting summary posted`);
+        console.log(`📊 General meeting summary posted`);
     } catch (error) {
-        console.error('Error generating Lounge meeting summary:', error);
+        console.error('Error generating General meeting summary:', error);
     }
 }
 
